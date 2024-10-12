@@ -1,0 +1,48 @@
+{
+  "courses":[
+    {
+      "id": 1,
+      "name": "Introduction to python",
+      "progress": 60,
+      "deadline": "12-12-2024",
+      "hours_per_week": 5,
+      "status": "Enrolled/Inprogress",
+      "certificate": "N/A",
+      "domain": "Technical",
+      "description": "Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis."
+    },
+    {
+      "id": 2,
+      "name": "Machine learning basics",
+      "progress": 0,
+      "deadline": "18-02-2025",
+      "hours_per_week": 10,
+      "status": "Enrolled/Inprogress",
+      "certificate": "N/A",
+      "domain": "Technical",
+      "description": "Machine learning is a subset of AI, which uses algorithms that learn from data to make predictions. These predictions can be generated through supervised learning, where algorithms learn patterns from existing data, or unsupervised learning, where they discover general patterns in data."
+    },
+    {
+      "id": 3,
+      "name": "Advanced Javascript",
+      "progress": 100,
+      "deadline": null,
+      "hours_per_week": 0,
+      "status": "Completed",
+      "certificate": "Advanced_JS_Certificate.pdf",
+      "domain": "Technical",
+      "description": "Advanced JavaScript is a set of advanced concepts that go beyond the basics of JavaScript. These concepts can help you write more efficient and effective code. Advanced JavaScript includes closures, prototypes, promises, async/await, and more." 
+    },
+    {
+      "id": 4,
+      "name": "Business strategies and principles",
+      "progress": 45,
+      "deadline": null,
+      "hours_per_week": 12,
+      "status": "Enrolled/Inprogress",
+      "certificate": "N/A",
+      "domain": "Functional",
+      "description": "A business strategy provides the guiding principles for many organizational decisions, such as hiring new employees, or developing new products. And helps you to define the methods and tactics you need to take within your company."
+    }
+  ]
+}
