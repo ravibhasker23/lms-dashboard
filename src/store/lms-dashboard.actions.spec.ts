@@ -1,42 +1,25 @@
-import {
-  IAnswers,
-  IError,
-  IQuestionResponse,
-} from './lms-dashboard-state.model';
-import * as questionnaireActions from './lms-dashboard.actions';
+import { ICourse, ICourseResponse, IError } from './lms-dashboard-state.model';
+import * as lmsDashboardActions from './lms-dashboard.actions';
 
-describe('FetchInitialQuestionnaire', () => {
-  it('should initite the questionnaire', () => {
-    const action = new questionnaireActions.FetchInitialQuestionnaire();
+describe('FetchInitCourses', () => {
+  it('should initite the courses', () => {
+    const action = new lmsDashboardActions.FetchInitCourses();
     expect(action.type).toBe(
-      questionnaireActions.ActionTypes.FETCH_INIT_QUESTIONNAIRE,
+      lmsDashboardActions.ActionTypes.FETCH_INIT_COURSES,
     );
   });
 });
 
-describe('FetchInitialQuestionnaireSuccess', () => {
+describe('FetchInitCoursesSuccess', () => {
   it('should call success when effect is complete', () => {
-    const payload: IQuestionResponse = {
-      questionnaire: {
-        doughnutCategory: '',
-        loading: false,
-        error: null,
-        page: {
-          controls: {
-            qId: '',
-            parent: false,
-            label: '',
-            options: [],
-          },
-        },
-        answers: [],
-      },
+    const payload: ICourseResponse = {
+      courses: [],
+      lastUpdated: '',
+      totalCourses: [],
     };
-    const action = new questionnaireActions.FetchInitialQuestionnaireSuccess(
-      payload,
-    );
+    const action = new lmsDashboardActions.FetchInitCoursesSuccess(payload);
     expect(action.type).toBe(
-      questionnaireActions.ActionTypes.FETCH_INIT_QUESTIONNAIRE_SUCCESS,
+      lmsDashboardActions.ActionTypes.FETCH_INIT_COURSES_SUCCESS,
       payload,
     );
 
@@ -44,17 +27,15 @@ describe('FetchInitialQuestionnaireSuccess', () => {
   });
 });
 
-describe('FetchInitialQuestionnaireError', () => {
+describe('FetchInitCoursesError', () => {
   it('should call error when effect has error', () => {
     const payload: IError = {
       errorMsg: '',
       errorCode: '',
     };
-    const action = new questionnaireActions.FetchInitialQuestionnaireError(
-      payload,
-    );
+    const action = new lmsDashboardActions.FetchInitCoursesError(payload);
     expect(action.type).toBe(
-      questionnaireActions.ActionTypes.FETCH_INIT_QUESTIONNAIRE_ERROR,
+      lmsDashboardActions.ActionTypes.FETCH_INIT_COURSES_ERROR,
       payload,
     );
 
@@ -62,12 +43,25 @@ describe('FetchInitialQuestionnaireError', () => {
   });
 });
 
-describe('SetAnswers', () => {
-  it('should call SetAnswers for storing user inputs', () => {
-    const payload: IAnswers[] = [];
-    const action = new questionnaireActions.SetAnswers(payload);
+describe('SetUpdatedCourses', () => {
+  it('should call SetUpdatedCourses for storing user inputs', () => {
+    const payload: ICourse[] = [];
+    const action = new lmsDashboardActions.SetUpdatedCourses(payload);
     expect(action.type).toBe(
-      questionnaireActions.ActionTypes.SET_ANSWERS,
+      lmsDashboardActions.ActionTypes.SET_UPDATED_COURSES,
+      payload,
+    );
+
+    expect(action.payload).toEqual(payload);
+  });
+});
+
+describe('RefreshLastUpdated', () => {
+  it('should call RefreshLastUpdated for storing user inputs', () => {
+    const payload: string = '';
+    const action = new lmsDashboardActions.RefreshLastUpdated(payload);
+    expect(action.type).toBe(
+      lmsDashboardActions.ActionTypes.REFRESH_LAST_UPDATED,
       payload,
     );
 

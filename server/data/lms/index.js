@@ -1,5 +1,5 @@
-const fetchCourses = require('./file/courses.json');
+const fetchCourses = require("./file/courses.json");
 
 module.exports = {
-    fetchCourses: fetchCourses
-}
+  fetchCourses: fetchCourses,
+};

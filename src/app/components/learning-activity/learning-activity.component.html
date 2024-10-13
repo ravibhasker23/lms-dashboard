@@ -1,45 +1,94 @@
-<div class="row text-align-l">
-
-    <div class="col-sm-12">
-        <p class="lead">
-           Goal risk notification
-        </p>
-    </div>
-
-    <div class="col-sm-12">
-        <p class="lead">
-           My Learning
-        </p>
-    </div>
-
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-2">
-            <div class="custom">
-                <i class="bi bi-bullseye icon-target px-2"></i>
-            </div>
-          </div>
-          <div class="col-md-10">
-            <div class="card-body">
-              <h5 class="card-title">Overall Progress</h5>
-              <p class="card-text font-text-xs">Study <b>4</b> hours per week to finish on <b>30th December, 2024.</b></p>
-            </div>
-          </div>
+<div class="row text-align-l mt-5 py-3 pt-5">
+  <div class="card mb-3" #learning>
+    <div class="row g-0">
+      <div class="col-xs-1 col-sm-1 col-md-1">
+        <div class="custom">
+          <i class="bi bi-bullseye icon-target px-2"></i>
         </div>
-
-        <div class="row g-0 mt-3">
-            <div class="col-md-2">
-              <div class="custom">
-                <i class="bi bi-trophy-fill icon-trophy px-2"></i>
-              </div>
-            </div>
-            <div class="col-md-10">
-              <div class="card-body">
-                <h5 class="card-title">Certificates</h5>
-                <p class="card-text font-text-xs">You have <b>1</b> learning completed</p>
-              </div>
-            </div>
-          </div>
       </div>
+      <div class="col-xs-11 col-sm-11 col-md-11 px-4">
+        <div class="card-body">
+          <h5 class="card-title">Overview</h5>
+          <p class="card-text font-text-xs">
+            Your overall progress is <b>{{ overAllProgress }}%</b>
+          </p>
+          Courses <span class="text-success">Completed:</span><br />
+          @for (cert of certificates; track cert.id) {
+            <small class="font-text-xs"> {{ cert.name }}<br /> </small>
+          }
+
+          <br />
+          Courses <span class="text-warning"> In progress:</span><br />
+          @for (cert of inProgress; track cert.id) {
+            <small class="font-text-xs">
+              {{ cert.name }} ({{ cert.progress }}%)<br />
+            </small>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0 mt-1">
+      <div class="col-xs-1 col-sm-1 col-md-1">
+        <div class="custom">
+          <i class="bi bi-trophy-fill icon-trophy px-2"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11 col-md-11 px-4">
+        <div class="card-body">
+          <h5 class="card-title">My Certificates</h5>
+          @for (cert of certificates; track cert.id) {
+            <small class="font-text-xs">
+              {{ cert.certificate }}
+              <a
+                href="javascript:void(0);"
+                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover font-text-sm"
+                (click)="downloadCertificate(cert.certificate)"
+              >
+                <i class="bi bi-cloud-arrow-down-fill font-text-sm"></i> </a
+            ></small>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+@if (selectedCourseDetails) {
+  <div class="row text-align-l">
+    <div class="col-sm-12">
+      <p class="lead">Learning details</p>
+    </div>
+
+    <div class="card mb-2">
+      <div class="row g-0">
+        <div class="col-xs-1 col-sm-1 col-md-1">
+          <div class="custom">
+            <i class="bi bi-hourglass-split icon-hourglass px-2"></i>
+          </div>
+        </div>
+        <div class="col-xs-11 col-sm-11 col-md-11 px-4">
+          <div class="card-body">
+            <h5 class="card-title">Estimated hours</h5>
+            @if (selectedCourseDetails.hoursPerWeek !== 0) {
+              <p class="card-text font-text-xs">
+                Study
+                <b>{{
+                  selectedCourseDetails.hoursPerWeek
+                    ? selectedCourseDetails.hoursPerWeek
+                    : 0
+                }}</b>
+                hours per week to complete the course by
+                <b>{{ selectedCourseDetails.deadline }}</b>
+              </p>
+            } @else {
+              <p class="card-text font-text-xs">
+                You have completed this course successfully.
+              </p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

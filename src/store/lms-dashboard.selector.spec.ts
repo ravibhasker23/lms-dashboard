@@ -1,15 +1,30 @@
 import { initState } from './lms-dashboard.reducers';
-import * as questionnaireSelector from './lms-dashboard.selector';
+import * as courseSelector from './lms-dashboard.selector';
 
 describe('questionnaireSelector', () => {
   const state = {
-    questionnaire: initState,
+    lmsDashboard: initState,
   };
 
-  describe('pageSelector', () => {
+  describe('courseSelector', () => {
     it('should return the value of page from state', () => {
-      const pageSelectorState = questionnaireSelector.pageSelector(state);
-      expect(pageSelectorState).toBeDefined();
+      const courseSelectorState = courseSelector.courseSelector(state);
+      expect(courseSelectorState).toBeDefined();
+    });
+  });
+
+  describe('totalCourseSelector', () => {
+    it('should return the value of page from state', () => {
+      const totalCourseSelectorState =
+        courseSelector.totalCourseSelector(state);
+      expect(totalCourseSelectorState).toBeDefined();
+    });
+  });
+
+  describe('lastUpdateSelector', () => {
+    it('should return the value of page from state', () => {
+      const lastUpdateSelectorState = courseSelector.lastUpdateSelector(state);
+      expect(lastUpdateSelectorState).toBeDefined();
     });
   });
 });

@@ -1,17 +1,171 @@
-<div class="modal" tabindex="-1" #addCourseModal>
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add a new course</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" tabindex="-1" #addCourseModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Customise your learning journey</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="timeline timeline-vertical timeline-warning">
+            <ul>
+              @for (course of courses; track course.id) {
+                @if (course.progress !== 100) {
+                  <li>
+                    <div class="description">
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <div class="desc_title">{{ course.name }}</div>
+                        </div>
+                        <div class="col-sm-2">
+                          <small class="px-2"
+                            ><a
+                              href="javascript:void(0);"
+                              class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover font-text-xs"
+                              (click)="removeCourse(course.id)"
+                            >
+                              <i class="bi bi-x-circle-fill"></i> </a
+                          ></small>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                }
+              }
+              <li>
+                <div class="description">
+                  <div class="desc_title">
+                    @if (!courseBlock) {
+                      <small class="px-2"
+                        ><a
+                          href="javascript:void(0);"
+                          class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover font-text-xs"
+                          (click)="toggleCourseBlock()"
+                        >
+                          <i class="bi bi-plus-circle-fill"></i> Add course
+                        </a></small
+                      >
+                    }
+
+                    @if (courseBlock) {
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <select
+                            [ngClass]="
+                              exists
+                                ? 'form-select form-select-sm b'
+                                : 'form-select form-select-sm'
+                            "
+                            aria-label="Small select example"
+                            (change)="addNewCourse($event)"
+                            [(ngModel)]="selectedValue"
+                          >
+                            <option selected [value]="''" disabled>
+                              Add new course
+                            </option>
+                            @for (
+                              totalCourse of totalCourses;
+                              track totalCourse.id;
+                              let idx = $index
+                            ) {
+                              <option [value]="totalCourse.id + '_' + idx">
+                                {{ totalCourse.name }}
+                              </option>
+                            }
+                          </select>
+                        </div>
+                        <div class="col-sm-2">
+                          <small class="px-2"
+                            ><a
+                              href="javascript:void(0);"
+                              class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover font-text-xs"
+                              (click)="toggleCourseBlock()"
+                            >
+                              <i class="bi bi-x-circle-fill"></i> </a
+                          ></small>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
+
+        <hr />
+
+        <div class="row mt-4">
+          <small class="mb-2"> Choose a course & deadline: </small>
+          <div class="col-sm-12">
+            <select
+              [ngClass]="'form-select form-select-sm'"
+              aria-label="Small select example"
+              [(ngModel)]="deadlineCourse"
+            >
+              <option selected [value]="''" disabled>Choose course</option>
+              @for (course of courses; track course.id; let idx = $index) {
+                @if (course.progress !== 100) {
+                  <option [value]="course.id + '_' + idx">
+                    {{ course.name }}
+                  </option>
+                }
+              }
+            </select>
+          </div>
+          <div class="col-sm-12">
+            <div class="input-group mb-3 mt-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Update deadline"
+                readonly
+                placeholder="yyyy-mm-dd"
+                class="form-control"
+                ngbDatepicker
+                #datePicker="ngbDatepicker"
+                [startDate]="today"
+                [markDisabled]="isDisabled"
+                [ngModel]="selectedDate"
+                (ngModelChange)="onDateChange($event)"
+              />
+
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="button-addon2"
+                (click)="datePicker.toggle()"
+              >
+                <i class="bi bi-calendar3"></i>
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+
+        @if (addDeadlineErr) {
+          <small class=""
+            >Please select the deadline date for newly added course.</small
+          >
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="dismiss()"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-success" (click)="onSaveChanges()">
+          Save changes
+        </button>
       </div>
     </div>
   </div>
+</div>

@@ -3,22 +3,31 @@ import { Action } from '@ngrx/store';
 //initial response
 export interface ICourseResponse {
   courses: ICourse[];
+  lastUpdated: string;
+  totalCourses: ITotalCourses[];
 }
 
-export interface ICourse{
-  id: string;
+export interface ICourse {
+  id: number;
   name: string;
-  progress: string;
+  progress: number;
   deadline: string;
-  hours_per_week: number;
   status: string;
   certificate: string;
   domain: string;
   description: string;
+  goalRisk: boolean;
 }
 
-export interface ILmsDashboardSelectState{
-  lmsDashboard: ILmsDashboardState
+export interface ITotalCourses {
+  id: number;
+  name: string;
+  domain: string;
+  description: string;
+}
+
+export interface ILmsDashboardSelectState {
+  lmsDashboard: ILmsDashboardState;
 }
 
 //complete state
@@ -26,6 +35,8 @@ export interface ILmsDashboardState {
   loading: boolean;
   error: IError | null;
   courses: ICourse[] | null;
+  totalCourses: ITotalCourses[] | null;
+  lastUpdated: string;
 }
 
 //error handling interface

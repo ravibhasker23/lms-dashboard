@@ -18,7 +18,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
     AppComponent,
     CourseListComponent,
     LearningActivityComponent,
-    AddCourseComponent
+    AddCourseComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,11 +30,8 @@ import { AddCourseComponent } from './components/add-course/add-course.component
     FormsModule,
     NgbModule,
   ],
-  providers: [
-    provideAnimationsAsync(),
-    LmsDashboardService
-  ],
+  providers: [provideAnimationsAsync(), LmsDashboardService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

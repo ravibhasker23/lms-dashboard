@@ -1,11 +1,10 @@
 {
-  "courses":[
+  "courses": [
     {
       "id": 1,
       "name": "Introduction to python",
-      "progress": 60,
-      "deadline": "12-12-2024",
-      "hours_per_week": 5,
+      "progress": 43.5,
+      "deadline": "2024-11-12",
       "status": "Enrolled/Inprogress",
       "certificate": "N/A",
       "domain": "Technical",
@@ -13,36 +12,78 @@
     },
     {
       "id": 2,
-      "name": "Machine learning basics",
-      "progress": 0,
-      "deadline": "18-02-2025",
-      "hours_per_week": 10,
-      "status": "Enrolled/Inprogress",
-      "certificate": "N/A",
-      "domain": "Technical",
-      "description": "Machine learning is a subset of AI, which uses algorithms that learn from data to make predictions. These predictions can be generated through supervised learning, where algorithms learn patterns from existing data, or unsupervised learning, where they discover general patterns in data."
-    },
-    {
-      "id": 3,
       "name": "Advanced Javascript",
       "progress": 100,
       "deadline": null,
-      "hours_per_week": 0,
       "status": "Completed",
-      "certificate": "Advanced_JS_Certificate.pdf",
+      "certificate": "Advanced_JS_certificate.pdf",
       "domain": "Technical",
-      "description": "Advanced JavaScript is a set of advanced concepts that go beyond the basics of JavaScript. These concepts can help you write more efficient and effective code. Advanced JavaScript includes closures, prototypes, promises, async/await, and more." 
+      "description": "Advanced JavaScript is a set of advanced concepts that go beyond the basics of JavaScript. These concepts can help you write more efficient and effective code. Advanced JavaScript includes closures, prototypes, promises, async/await, and more."
+    },
+    {
+      "id": 3,
+      "name": "Angular basics",
+      "progress": 100,
+      "deadline": null,
+      "status": "Completed",
+      "certificate": "Angular_basic_certificate.pdf",
+      "domain": "Technical",
+      "description": "Angular is a development platform, built on TypeScript. As a platform, Angular includes: A component-based framework for building scalable web applications. A collection of well-integrated libraries that cover a wide variety of features, including routing, forms management, client-server communication, and more."
     },
     {
       "id": 4,
       "name": "Business strategies and principles",
       "progress": 45,
-      "deadline": null,
-      "hours_per_week": 12,
+      "deadline": "2025-02-09",
       "status": "Enrolled/Inprogress",
       "certificate": "N/A",
       "domain": "Functional",
       "description": "A business strategy provides the guiding principles for many organizational decisions, such as hiring new employees, or developing new products. And helps you to define the methods and tactics you need to take within your company."
+    }
+  ],
+  "lastUpdated": "2024-10-13T09:13:44Z",
+  "totalCourses": [
+    {
+      "id": 1,
+      "name": "Introduction to python",
+      "domain": "Technical",
+      "description": "Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis."
+    },
+    {
+      "id": 2,
+      "name": "Advanced Javascript",
+      "domain": "Technical",
+      "description": "Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis."
+    },
+    {
+      "id": 3,
+      "name": "Angular basics",
+      "domain": "Technical",
+      "description": "Angular is a development platform, built on TypeScript. As a platform, Angular includes: A component-based framework for building scalable web applications. A collection of well-integrated libraries that cover a wide variety of features, including routing, forms management, client-server communication, and more."
+    },
+    {
+      "id": 4,
+      "name": "Business strategies and principles",
+      "domain": "Functional",
+      "description": "A business strategy provides the guiding principles for many organizational decisions, such as hiring new employees, or developing new products. And helps you to define the methods and tactics you need to take within your company."
+    },
+    {
+      "id": 5,
+      "name": "Machine learning basics",
+      "domain": "Technical",
+      "description": "Machine learning is a subset of AI, which uses algorithms that learn from data to make predictions. These predictions can be generated through supervised learning, where algorithms learn patterns from existing data, or unsupervised learning, where they discover general patterns in data."
+    },
+    {
+      "id": 6,
+      "name": "Angular advanced",
+      "domain": "Technical",
+      "description": "The course will begin by discussing advanced topics related to building blocks, components, communication, lifecycle, and the component router. Students will then explore advanced topics in data binding, directives, and pipes."
+    },
+    {
+      "id": 7,
+      "name": "Testing with selenium",
+      "domain": "Technical",
+      "description": "Selenium is an open-source, automated testing tool used to test web applications across various browsers. Selenium can only test web applications, unfortunately, so desktop and mobile apps can't be tested."
     }
   ]
 }

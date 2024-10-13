@@ -1,54 +1,89 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <i class="bi bi-compass"></i> Courses.</a>
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-compass"></i> Learning Dashboard</a
+      >
     </div>
     <div class="expand navbar-expand" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li class="px-3">
-          <i class="bi bi-app-indicator"></i>
-        </li>
         <li class="px-1">
-          <i class="bi bi-mortarboard"></i>
-          <span class="px-2 size"> Ravi Bhasker </span>
+          <i class="bi bi-mortarboard icon-hat"></i>
+          <span class="px-2 size"> Welcome, User </span>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-  
+
 <div class="container-fluid text-center">
   <div class="row content">
-    <div class="col-sm-8 text-left background py-4">
+    <div
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-8 text-left background py-4"
+    >
       <div class="row py-2">
         <div class="col-sm-6 text-align-left">
           <span class="h5">Course activity</span>
-          <i class="bi bi-plus-square-fill font-size-xl px-3 pointer" (click)="addNewCourse()"></i>
+          <!-- <i class="bi bi-pencil-square font-size-xl px-3 pointer" ></i> -->
         </div>
-      </div>
-      <!-- @if(courses$ | async){ -->
-        <feature-course-list
-        [courses]="courses$ | async">
+        <small class="text-body-secondary font-text-xs text-align-left"
+          >Last updated:
+          {{ lastUpdated$ | async | date: "MMM d, y, h:mm:ss a" }}
 
+          @if (refreshCheck) {
+            <div class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          }
+        </small>
+        <div class="row"></div>
+      </div>
+
+      <div class="row mb-3 px-2 text-align-left display">
+        <small class="px-2"
+          ><a
+            href="javascript:void(0);"
+            class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover font-text-xs"
+            (click)="addNewCourse()"
+          >
+            Customise your learning journey
+            <i class="bi bi-plus-circle-fill"></i> </a
+        ></small>
+        |
+
+        <small class="px-2"
+          ><a
+            href="javascript:void(0);"
+            class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover font-text-xs"
+            (click)="refreshLastUpdated()"
+          >
+            Refresh <i class="bi bi-arrow-clockwise"></i> </a
+        ></small>
+      </div>
+
+      <feature-course-list
+        [courses]="courses$ | async"
+        (selectedCourseDetails)="onSelectedDeatils($event)"
+      >
       </feature-course-list>
-      <!-- } -->
-
     </div>
-    <div class="col-sm-4 sidenav">
-      <div class="row py-3">
-        <div class="col-sm-6 text-align-left">
-          <span class="h5">Learning activity</span>
-        </div>
-      </div>
-      <feature-learning-activity>
-
-      </feature-learning-activity>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 sidenav">
+      @if (courses$ | async) {
+        <feature-learning-activity
+          [courses]="courses$ | async"
+          [selectedCourseDetails]="selectedCourseDetails"
+        >
+        </feature-learning-activity>
+      }
     </div>
   </div>
 </div>
 
 <feature-add-course
   [modalEvent]="modalEvent.asObservable()"
+  [courses]="courses$ | async"
+  [totalCourses]="totalCourses$ | async"
+  (riskEvent)="onRecheck($event)"
 ></feature-add-course>
 
 <router-outlet />

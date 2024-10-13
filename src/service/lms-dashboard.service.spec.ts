@@ -18,8 +18,15 @@ describe('LmsDashboardService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('be able to retrieve posts from the API bia GET', () => {
+  it('be able to retrieve courses from the API via GET', () => {
     service.fetchCourses().subscribe((res) => {
+      expect(res).toBeDefined();
+    });
+  });
+
+  it('be able to download the pdf from the API via POST', () => {
+    const cert = '';
+    service.downloadCertificate(cert).subscribe((res) => {
       expect(res).toBeDefined();
     });
   });
