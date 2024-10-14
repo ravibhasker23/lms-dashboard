@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
-import {
-  ICourse,
-  ILmsDashboardState,
-} from '../store/lms-dashboard-state.model';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ILmsDashboardState } from '../store/lms-dashboard-state.model';
 import { Store } from '@ngrx/store';
 import {
   courseSelector,
@@ -48,10 +39,13 @@ export class AppComponent implements OnInit {
 
   refreshCheck = false;
 
+  loading: boolean | null = false;
+
   constructor(private store: Store<ILmsDashboardState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(new FetchInitCourses());
+    this.loading = false;
   }
 
   addNewCourse() {
@@ -73,7 +67,6 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       const lastUpdated = new Date().toLocaleString();
       this.store.dispatch(new RefreshLastUpdated(lastUpdated));
-      this.store.dispatch(new FetchInitCourses());
       this.refreshCheck = false;
     }, 400);
   }

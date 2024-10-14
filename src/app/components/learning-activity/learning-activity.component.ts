@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
@@ -37,10 +36,7 @@ export class LearningActivityComponent implements OnInit, OnChanges {
 
   @ViewChild('learning') learning!: ElementRef;
 
-  constructor(
-    private lmsService: LmsDashboardService,
-    private cdRef: ChangeDetectorRef,
-  ) {}
+  constructor(private lmsService: LmsDashboardService) {}
 
   ngOnInit(): void {
     this.checkOverAllProgress();
@@ -84,17 +80,22 @@ export class LearningActivityComponent implements OnInit, OnChanges {
       setTimeout(() => {
         this.learning.nativeElement.focus();
       }, 200);
-    } else if (changes && changes['courses'].currentValue) {
-      this.certificates = [];
-      this.certificates = this.courses.filter(
-        (course) => course.status.toLocaleLowerCase() === 'completed',
-      );
-
-      this.inProgress = [];
-
-      this.inProgress = this.courses.filter(
-        (course) => course.status.toLocaleLowerCase() === 'enrolled/inprogress',
-      );
+    } else if (
+      changes &&
+      changes['courses'] &&
+      changes['courses'].currentValue
+    ) {
+      this.certificates = [
+        ...this.courses.filter(
+          (course) => course.status.toLocaleLowerCase() === 'completed',
+        ),
+      ];
+      this.inProgress = [
+        ...this.courses.filter(
+          (course) =>
+            course.status.toLocaleLowerCase() === 'enrolled/inprogress',
+        ),
+      ];
     }
   }
 }

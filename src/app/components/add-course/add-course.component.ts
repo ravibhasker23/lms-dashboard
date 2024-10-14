@@ -118,7 +118,7 @@ export class AddCourseComponent implements OnInit {
         name: this.totalCourses[idx].name,
         progress: 0,
         deadline: '',
-        status: 'Enrolled/In progress',
+        status: 'Enrolled/Inprogress',
         certificate: 'N/A',
         domain: this.totalCourses[idx].domain,
         description: this.totalCourses[idx].description,

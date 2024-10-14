@@ -18,7 +18,7 @@ export class LmsDashboardEffects {
     private _lmsDashboardService: LmsDashboardService,
   ) {}
 
-  public fetchInitQuestionnaire$ = createEffect(() => {
+  public fetchInitiCourses$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ActionTypes.FETCH_INIT_COURSES),
       mergeMap(() => {

@@ -1,7 +1,7 @@
 import { initState } from './lms-dashboard.reducers';
 import * as courseSelector from './lms-dashboard.selector';
 
-describe('questionnaireSelector', () => {
+describe('LmsDashboardSelector', () => {
   const state = {
     lmsDashboard: initState,
   };

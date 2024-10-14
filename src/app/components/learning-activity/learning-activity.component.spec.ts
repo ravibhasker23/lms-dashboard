@@ -11,19 +11,20 @@ describe('LearningActivityComponent', () => {
   let lmsService: jasmine.SpyObj<LmsDashboardService>;
 
   beforeEach(async () => {
-    const lmsServiceSpy = jasmine.createSpyObj('LmsDashboardService', ['downloadCertificate']);
+    const lmsServiceSpy = jasmine.createSpyObj('LmsDashboardService', [
+      'downloadCertificate',
+    ]);
 
     await TestBed.configureTestingModule({
       declarations: [LearningActivityComponent],
-      providers: [
-        { provide: LmsDashboardService, useValue: lmsServiceSpy },
-        ChangeDetectorRef
-      ]
+      providers: [{ provide: LmsDashboardService, useValue: lmsServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LearningActivityComponent);
     component = fixture.componentInstance;
-    lmsService = TestBed.inject(LmsDashboardService) as jasmine.SpyObj<LmsDashboardService>;
+    lmsService = TestBed.inject(
+      LmsDashboardService,
+    ) as jasmine.SpyObj<LmsDashboardService>;
   });
 
   it('should create the component', () => {
@@ -32,8 +33,28 @@ describe('LearningActivityComponent', () => {
 
   it('should filter courses into certificates and inProgress on init', () => {
     const courses: ICourse[] = [
-      { id: 1, name: 'Course 1', status: 'completed', progress: 100 },
-      { id: 2, name: 'Course 2', status: 'enrolled/inprogress', progress: 50 }
+      {
+        id: 1,
+        name: 'Course 1',
+        status: 'completed',
+        progress: 100,
+        deadline: '',
+        certificate: '',
+        domain: '',
+        description: '',
+        goalRisk: false,
+      },
+      {
+        id: 2,
+        name: 'Course 2',
+        status: 'enrolled/inprogress',
+        progress: 50,
+        deadline: '',
+        certificate: '',
+        domain: '',
+        description: '',
+        goalRisk: false,
+      },
     ];
     component.courses = courses;
     component.ngOnInit();
@@ -43,8 +64,28 @@ describe('LearningActivityComponent', () => {
 
   it('should calculate overall progress correctly', () => {
     const courses: ICourse[] = [
-      { id: 1, name: 'Course 1', status: 'completed', progress: 100 },
-      { id: 2, name: 'Course 2', status: 'enrolled/inprogress', progress: 50 }
+      {
+        id: 1,
+        name: 'Course 1',
+        status: 'completed',
+        progress: 100,
+        deadline: '',
+        certificate: '',
+        domain: '',
+        description: '',
+        goalRisk: false,
+      },
+      {
+        id: 2,
+        name: 'Course 2',
+        status: 'enrolled/inprogress',
+        progress: 50,
+        deadline: '',
+        certificate: '',
+        domain: '',
+        description: '',
+        goalRisk: false,
+      },
     ];
     component.courses = courses;
     component.checkOverAllProgress();
@@ -64,7 +105,9 @@ describe('LearningActivityComponent', () => {
 
     component.downloadCertificate('certificate.pdf');
 
-    expect(lmsService.downloadCertificate).toHaveBeenCalledWith('certificate.pdf');
+    expect(lmsService.downloadCertificate).toHaveBeenCalledWith(
+      'certificate.pdf',
+    );
     expect(window.URL.createObjectURL).toHaveBeenCalledWith(blob);
     expect(document.createElement).toHaveBeenCalledWith('a');
     expect(a.href).toBe('blob:url');

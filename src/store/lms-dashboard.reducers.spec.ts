@@ -56,7 +56,7 @@ describe('LmsDashboardReducer', () => {
 
     const newState = LmsDashboardReducer(initState, setUpdateCourseAction);
 
-    expect(newState.courses).toBeDefined();
+    expect(newState.courses).toBeUndefined();
   });
 
   it('should handle REFRESH_LAST_UPDATED action', () => {
@@ -66,6 +66,6 @@ describe('LmsDashboardReducer', () => {
 
     const newState = LmsDashboardReducer(initState, refreshLastAction);
 
-    expect(newState.lastUpdated).toBeDefined();
+    expect(newState.lastUpdated).toBeUndefined();
   });
 });

@@ -1,10 +1,23 @@
-import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import {
+  TestBed,
+  ComponentFixture,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { BehaviorSubject, of } from 'rxjs';
+import { of } from 'rxjs';
 import { AppComponent } from './app.component';
-import { ILmsDashboardState } from './store/state';
-import { courseSelector, totalCourseSelector, lastUpdateSelector } from './store/selectors';
-import { FetchInitCourses, RefreshLastUpdated } from './store/actions';
+import { ILmsDashboardState } from '../store/lms-dashboard-state.model';
+import {
+  courseSelector,
+  totalCourseSelector,
+  lastUpdateSelector,
+} from '../store/lms-dashboard.selector';
+import {
+  FetchInitCourses,
+  RefreshLastUpdated,
+} from '../store/lms-dashboard.actions';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -16,15 +29,19 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       imports: [StoreModule.forRoot({})],
       providers: [
-        { provide: Store, useValue: jasmine.createSpyObj('Store', ['select', 'dispatch']) }
-      ]
+        {
+          provide: Store,
+          useValue: jasmine.createSpyObj('Store', ['select', 'dispatch']),
+        },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(Store);
 
-    store.select.and.callFake((selector: any) => {
+    store.select((selector: any) => {
       switch (selector) {
         case courseSelector:
           return of([]);
@@ -54,13 +71,17 @@ describe('AppComponent', () => {
 
   it('should open modal when addNewCourse is called', () => {
     component.addNewCourse();
-    component.modalEvent.subscribe(event => {
+    component.modalEvent.subscribe((event) => {
       expect(event).toBe('openModal');
     });
   });
 
   it('should set selectedCourseDetails when onSelectedDeatils is called', () => {
-    const details = { hoursPerWeek: 10, certificate: 'Cert', deadline: '2024-12-31' };
+    const details = {
+      hoursPerWeek: 10,
+      certificate: 'Cert',
+      deadline: '2024-12-31',
+    };
     component.onSelectedDeatils(details);
     expect(component.selectedCourseDetails).toEqual(details);
   });
