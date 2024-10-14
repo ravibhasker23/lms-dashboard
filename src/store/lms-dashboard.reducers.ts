@@ -1,6 +1,7 @@
 import { ActionTypes } from './lms-dashboard.actions';
 import { IAction, ILmsDashboardState } from './lms-dashboard-state.model';
 
+//Initial state
 export const initState: ILmsDashboardState = {
   loading: false,
   error: null,

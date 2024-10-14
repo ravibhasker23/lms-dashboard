@@ -38,6 +38,7 @@ export class LearningActivityComponent implements OnInit, OnChanges {
 
   constructor(private lmsService: LmsDashboardService) {}
 
+  //Creates the overvall progress data
   ngOnInit(): void {
     this.checkOverAllProgress();
     this.certificates = this.courses.filter(
@@ -49,6 +50,7 @@ export class LearningActivityComponent implements OnInit, OnChanges {
     );
   }
 
+  //calculates overall progress of the courses in enrolled/inprogress state.
   checkOverAllProgress() {
     const totalProgress = this.courses.reduce(
       (sum, course) => sum + course.progress,
@@ -59,6 +61,7 @@ export class LearningActivityComponent implements OnInit, OnChanges {
     );
   }
 
+  //Download certificate post request for the courses completed.
   downloadCertificate(certificate: string) {
     this.lmsService.downloadCertificate(certificate).subscribe((blob: Blob) => {
       const url = window.URL.createObjectURL(blob);

@@ -18,6 +18,7 @@ export class LmsDashboardEffects {
     private _lmsDashboardService: LmsDashboardService,
   ) {}
 
+  //side effect for fetching the initial courses
   public fetchInitiCourses$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ActionTypes.FETCH_INIT_COURSES),

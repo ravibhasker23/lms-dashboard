@@ -1,3 +1,4 @@
+<!-- Iterating over courses and showing all the courses alloted to the user -->
 @for (course of courses; track course.id; let idx = $index) {
   <div class="card border-primary mb-3 layout" style="width: 100%">
     <div class="card-body">
@@ -56,6 +57,7 @@
     <div class="card-footer">
       <div class="row">
         <div class="col-sm-6 text-align-l">
+          <!-- Mocked button, and has no action -->
           <small class="px-2"
             ><a
               href="javascript:void(0);"
@@ -64,6 +66,7 @@
               Continue learning <i class="bi bi-arrow-up-right"></i> </a
           ></small>
 
+          <!-- Button for displaying the estimated hours per week -->
           <small class="px-2"
             ><a
               href="javascript:void(0);"

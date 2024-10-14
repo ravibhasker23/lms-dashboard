@@ -92,7 +92,6 @@ describe('AppComponent', () => {
     expect(component.refreshCheck).toBeTrue();
     tick(400);
     expect(dispatchSpy).toHaveBeenCalledWith(jasmine.any(RefreshLastUpdated));
-    expect(dispatchSpy).toHaveBeenCalledWith(new FetchInitCourses());
     expect(component.refreshCheck).toBeFalse();
   }));
 

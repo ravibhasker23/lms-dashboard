@@ -43,15 +43,18 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<ILmsDashboardState>) {}
 
+  // Dispatches an action to fetch initial list of courses for the user
   ngOnInit(): void {
     this.store.dispatch(new FetchInitCourses());
     this.loading = false;
   }
 
+  //modal event passed as an subject to add-course modal for showing the modal
   addNewCourse() {
     this.modalEvent.next('openModal');
   }
 
+  //Updates the learning details in the learning activity section
   onSelectedDeatils(
     selectedDetails: {
       hoursPerWeek: number;

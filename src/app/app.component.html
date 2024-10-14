@@ -24,8 +24,8 @@
       <div class="row py-2">
         <div class="col-sm-6 text-align-left">
           <span class="h5">Course activity</span>
-          <!-- <i class="bi bi-pencil-square font-size-xl px-3 pointer" ></i> -->
         </div>
+        <!-- Last updated timestamp -->
         <small class="text-body-secondary font-text-xs text-align-left"
           >Last updated:
           {{ lastUpdated$ | async | date: "MMM d, y, h:mm:ss a" }}
@@ -40,6 +40,7 @@
       </div>
 
       <div class="row mb-3 px-2 text-align-left display">
+        <!-- Add/Customize the course journey -->
         <small class="px-2"
           ><a
             href="javascript:void(0);"
@@ -51,6 +52,7 @@
         ></small>
         |
 
+        <!-- Refresh last updated button -->
         <small class="px-2"
           ><a
             href="javascript:void(0);"
@@ -61,6 +63,7 @@
         ></small>
       </div>
 
+      <!-- Feature to fetch the initial course list. -->
       <feature-course-list
         [courses]="courses$ | async"
         (selectedCourseDetails)="onSelectedDeatils($event)"
@@ -69,6 +72,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 sidenav">
       @if (courses$ | async) {
+        <!-- Learning activity section for showing overall progress -->
         <feature-learning-activity
           [courses]="courses$ | async"
           [selectedCourseDetails]="selectedCourseDetails"
@@ -79,6 +83,7 @@
   </div>
 </div>
 
+<!-- add course modal to customise the learning journey -->
 <feature-add-course
   [modalEvent]="modalEvent.asObservable()"
   [courses]="courses$ | async"

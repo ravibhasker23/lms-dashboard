@@ -8,6 +8,7 @@
       </div>
       <div class="col-xs-11 col-sm-11 col-md-11 px-4">
         <div class="card-body">
+          <!-- Overview section -->
           <h5 class="card-title">Overview</h5>
           <p class="card-text font-text-xs">
             Your overall progress is <b>{{ overAllProgress }}%</b>
@@ -36,6 +37,7 @@
       </div>
       <div class="col-xs-11 col-sm-11 col-md-11 px-4">
         <div class="card-body">
+          <!-- My certificates section for downloading completed courses certificate -->
           <h5 class="card-title">My Certificates</h5>
           @for (cert of certificates; track cert.id) {
             <small class="font-text-xs">
@@ -54,6 +56,7 @@
   </div>
 </div>
 
+<!-- Estimated hours per week required to spend on a course. Assumption max is 40 hours -->
 @if (selectedCourseDetails) {
   <div class="row text-align-l">
     <div class="col-sm-12">

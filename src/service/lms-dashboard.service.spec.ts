@@ -1,13 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { LmsDashboardService } from './lms-dashboard.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LmsDashboardService', () => {
   let service: LmsDashboardService;
+  let httpClientSpy: { get: jasmine.Spy };
 
   beforeEach(() => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    service = new LmsDashboardService(httpClientSpy as any);
+
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, HttpClientTestingModule],
       providers: [LmsDashboardService],
     });
     service = TestBed.get(LmsDashboardService);

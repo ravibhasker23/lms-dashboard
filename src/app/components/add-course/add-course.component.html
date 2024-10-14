@@ -2,6 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <!-- Modal header -->
         <h5 class="modal-title">Customise your learning journey</h5>
         <button
           type="button"
@@ -10,10 +11,12 @@
           aria-label="Close"
         ></button>
       </div>
+      <!-- Modal body -->
       <div class="modal-body">
         <div class="container">
           <div class="timeline timeline-vertical timeline-warning">
             <ul>
+              <!-- Iterating over the course list and displaying the course name already existing -->
               @for (course of courses; track course.id) {
                 @if (course.progress !== 100) {
                   <li>
@@ -23,6 +26,7 @@
                           <div class="desc_title">{{ course.name }}</div>
                         </div>
                         <div class="col-sm-2">
+                          <!-- Remove an existing course -->
                           <small class="px-2"
                             ><a
                               href="javascript:void(0);"
@@ -40,6 +44,7 @@
               <li>
                 <div class="description">
                   <div class="desc_title">
+                    <!-- toggling add course and showing select for course list -->
                     @if (!courseBlock) {
                       <small class="px-2"
                         ><a
@@ -52,6 +57,7 @@
                       >
                     }
 
+                    <!-- Adding and removing a new course -->
                     @if (courseBlock) {
                       <div class="row">
                         <div class="col-sm-10">
@@ -100,6 +106,7 @@
 
         <hr />
 
+        <!-- Updating deadline date for an existing or a newly added course. -->
         <div class="row mt-4">
           <small class="mb-2"> Choose a course & deadline: </small>
           <div class="col-sm-12">
@@ -147,11 +154,7 @@
           </div>
         </div>
 
-        @if (addDeadlineErr) {
-          <small class=""
-            >Please select the deadline date for newly added course.</small
-          >
-        }
+        <!-- Close and save changes section of the modal -->
       </div>
       <div class="modal-footer">
         <button

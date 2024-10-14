@@ -10,11 +10,13 @@ export const courseSelector = createSelector(
   (state) => state.courses,
 );
 
+//selector for fetching the totalCourses available from the course list
 export const totalCourseSelector = createSelector(
   lmsDashboardSelectFeature,
   (state) => state.totalCourses,
 );
 
+//selector for fetching the last refresh updated
 export const lastUpdateSelector = createSelector(
   lmsDashboardSelectFeature,
   (state) => state.lastUpdated,

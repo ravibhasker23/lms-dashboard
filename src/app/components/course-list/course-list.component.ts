@@ -26,10 +26,8 @@ export class CourseListComponent implements OnInit {
     this.selectedCourseDetails.emit(null);
   }
 
-  refreshData() {
-    this.lastUpdated = new Date().toLocaleString();
-  }
-
+  // Updates learning activity section and estimates the hours per week required based on the progress and remaining days.
+  // Emits the selected details
   onSelectedLearning(selectedCourse: ICourse) {
     const now = new Date();
 
@@ -48,6 +46,7 @@ export class CourseListComponent implements OnInit {
     });
   }
 
+  //Checks risk after every update of deadline date for an existing course or newly added course. Assumption is 40 hours per week is feasible.
   checkRisk(course: ICourse) {
     return this.goalRiskService.checkRisk(course);
   }

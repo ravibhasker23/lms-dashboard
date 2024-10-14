@@ -58,8 +58,6 @@ export class AddCourseComponent implements OnInit {
 
   deadlineDate = '';
 
-  addDeadlineErr = false;
-
   @Output()
   riskEvent = new EventEmitter<boolean>();
 
@@ -80,6 +78,7 @@ export class AddCourseComponent implements OnInit {
     this.deadlineCourse = '';
   }
 
+  //Disables all the dates past the current date
   isDisabled = (date: NgbDateStruct) => {
     const today = new Date();
 
@@ -87,6 +86,7 @@ export class AddCourseComponent implements OnInit {
     return dateToCheck < today;
   };
 
+  //subscribes to observable and opens the modal based on the event
   _subcribeToEvent(event: string) {
     if (event === 'openModal') {
       this.modalInstance = new Modal(this.addCourseModal.nativeElement);
@@ -99,12 +99,14 @@ export class AddCourseComponent implements OnInit {
     }
   }
 
+  //show/hide the add course button and select dropdown
   toggleCourseBlock() {
     this.courseBlock = !this.courseBlock;
     this.exists = false;
     this.selectedValue = '';
   }
 
+  //adds a new course and updates the lists for updating deadline date for the newly added course
   addNewCourse(event: any) {
     const value = event.target.value;
     const id = Number(value.split('_')[0]);
@@ -133,6 +135,7 @@ export class AddCourseComponent implements OnInit {
     }
   }
 
+  //remove an existing or newly added course
   removeCourse(courseId: number) {
     this.courses = this.courses.filter((course) => course.id !== courseId);
   }
@@ -145,6 +148,7 @@ export class AddCourseComponent implements OnInit {
     this.deadlineDate = `${year}-${month}-${day}`;
   }
 
+  //saves changes added by the user and emits risk event to check for risk for the updated/newly added course. Hides the modal.
   onSaveChanges() {
     const idx = Number(this.deadlineCourse.split('_')[1]);
 
@@ -162,12 +166,7 @@ export class AddCourseComponent implements OnInit {
     this.riskEvent.emit(true);
   }
 
-  checkForChange() {
-    return (
-      JSON.stringify(this.lastStoredCourses) !== JSON.stringify(this.courses)
-    );
-  }
-
+  //Resets and dismisses the modal
   dismiss() {
     this.deadlineCourse = '';
     this.selectedDate = '';

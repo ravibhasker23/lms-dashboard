@@ -36,12 +36,6 @@ describe('CourseListComponent', () => {
     expect(component.selectedCourseDetails.emit).toHaveBeenCalledWith(null);
   });
 
-  it('should update lastUpdated when refreshData is called', () => {
-    const initialLastUpdated = component.lastUpdated;
-    component.refreshData();
-    expect(component.lastUpdated).toBe(initialLastUpdated);
-  });
-
   it('should emit selected course details when onSelectedLearning is called', () => {
     spyOn(component.selectedCourseDetails, 'emit');
     const selectedCourse: ICourse = {
